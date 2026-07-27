@@ -1,3 +1,4 @@
+import Background from "./components/Background"
 import Loader from "./components/Loader"
 import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
@@ -9,6 +10,7 @@ import Contact from "./components/Contact"
 function App() {
   return (
     <>
+      <Background />
       <Loader />
       <Navbar />
       <Hero />
