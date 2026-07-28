@@ -1,3 +1,4 @@
+import CustomCursor from "./components/CustomCursor"
 import Background from "./components/Background"
 import Loader from "./components/Loader"
 import Navbar from "./components/Navbar"
@@ -10,6 +11,7 @@ import Contact from "./components/Contact"
 function App() {
   return (
     <>
+      <CustomCursor />
       <Background />
       <Loader />
       <Navbar />

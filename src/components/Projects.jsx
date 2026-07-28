@@ -41,13 +41,13 @@ function Projects() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
         {projects.map((project, index) => (
           <motion.div
-            key={project.title}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.15 }}
-            className="bg-gray-900 rounded-2xl p-6 flex flex-col justify-between hover:-translate-y-2 hover:shadow-xl hover:shadow-purple-500/10 transition-all"
-          >
+  key={project.title}
+  initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100, rotate: index % 2 === 0 ? -5 : 5 }}
+  whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+  viewport={{ once: true }}
+  transition={{ type: "spring", stiffness: 80, damping: 14, delay: index * 0.2 }}
+  className="bg-gray-900 rounded-2xl p-6 flex flex-col justify-between hover:-translate-y-2 hover:shadow-xl hover:shadow-purple-500/10 transition-all"
+>
             <div>
               <h3 className="text-xl font-semibold text-white mb-3">
                 {project.title}

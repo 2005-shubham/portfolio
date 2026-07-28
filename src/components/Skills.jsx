@@ -39,13 +39,13 @@ function Skills() {
           const Icon = skill.icon
           return (
             <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
-              className="flex flex-col items-center gap-3 bg-gray-800 rounded-xl p-6 hover:bg-gray-700 hover:scale-105 transition-all"
-            >
+  key={skill.name}
+  initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60, rotate: index % 2 === 0 ? -8 : 8 }}
+  whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+  viewport={{ once: true }}
+  transition={{ type: "spring", stiffness: 100, damping: 12, delay: index * 0.12 }}
+  className="flex flex-col items-center gap-3 bg-gray-800 rounded-xl p-6 hover:bg-gray-700 hover:scale-105 transition-all"
+>
               <Icon className="w-8 h-8 text-purple-400" />
               <span className="text-gray-300 text-sm text-center">
                 {skill.name}
