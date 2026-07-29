@@ -44,7 +44,7 @@ function Skills() {
   whileInView={{ opacity: 1, x: 0, rotate: 0 }}
   viewport={{ once: true }}
   transition={{ type: "spring", stiffness: 100, damping: 12, delay: index * 0.12 }}
-  className="flex flex-col items-center gap-3 bg-gray-800 rounded-xl p-6 hover:bg-gray-700 hover:scale-105 transition-all"
+  className="flex flex-col items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 hover:border-purple-400/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:scale-105 transition-all"
 >
               <Icon className="w-8 h-8 text-purple-400" />
               <span className="text-gray-300 text-sm text-center">

@@ -53,7 +53,7 @@ function Projects() {
             whileInView={{ opacity: 1, x: 0, rotate: 0 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 80, damping: 14, delay: index * 0.2 }}
-            className="bg-gray-900 rounded-2xl p-6 flex flex-col justify-between hover:-translate-y-2 hover:shadow-xl hover:shadow-purple-500/10 transition-all"
+            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex flex-col justify-between hover:-translate-y-2 hover:border-purple-400/50 hover:shadow-[0_0_25px_rgba(168,85,247,0.25)] transition-all"
 >
             <div>
               <h3 className="text-xl font-semibold text-white mb-3">

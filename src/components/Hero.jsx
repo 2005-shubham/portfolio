@@ -12,7 +12,10 @@ function Hero() {
         transition={{ duration: 0.8 }}
         className="relative z-10 text-5xl md:text-6xl font-bold text-white mb-4"
       >
-        Hi, I'm <span className="text-purple-500">Shubham</span>
+        Hi, I'm{" "}
+        <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+          Shubham
+        </span>
       </motion.h1>
 
       <motion.p
