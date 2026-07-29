@@ -1,3 +1,4 @@
+import SmoothScroll from "./components/SmoothScroll"
 import CustomCursor from "./components/CustomCursor"
 import Background from "./components/Background"
 import Loader from "./components/Loader"
@@ -10,7 +11,7 @@ import Contact from "./components/Contact"
 
 function App() {
   return (
-    <>
+    <SmoothScroll>
       <CustomCursor />
       <Background />
       <Loader />
@@ -20,7 +21,7 @@ function App() {
       <Skills />
       <Projects />
       <Contact />
-    </>
+    </SmoothScroll>
   )
 }
 

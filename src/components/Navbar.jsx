@@ -13,28 +13,24 @@ function Navbar() {
   const [active, setActive] = useState("home")
 
   useEffect(() => {
-    const sections = links.map((link) => document.getElementById(link.id))
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + window.innerHeight / 2
+      let current = links[0].id
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id)
-          }
-        })
-      },
-      { threshold: 0.4 }
-    )
+      for (const link of links) {
+        const section = document.getElementById(link.id)
+        if (section && section.offsetTop <= scrollPos) {
+          current = link.id
+        }
+      }
 
-    sections.forEach((section) => {
-      if (section) observer.observe(section)
-    })
-
-    return () => {
-      sections.forEach((section) => {
-        if (section) observer.unobserve(section)
-      })
+      setActive(current)
     }
+
+    window.addEventListener("scroll", handleScroll)
+    handleScroll()
+
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const handleClick = (id) => {
