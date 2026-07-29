@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"
 import { ExternalLink } from "lucide-react"
+import { useState, useRef } from "react"
 
 const projects = [
   {
@@ -32,6 +33,45 @@ const projects = [
   },
 ]
 
+function TiltCard({ children, className }) {
+  const ref = useRef(null)
+  const [style, setStyle] = useState({})
+
+  const handleMouseMove = (e) => {
+    const el = ref.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+    const rotateX = ((y - centerY) / centerY) * -8
+    const rotateY = ((x - centerX) / centerX) * 8
+
+    setStyle({
+      transform: `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`,
+    })
+  }
+
+  const handleMouseLeave = () => {
+    setStyle({
+      transform: "perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
+    })
+  }
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ ...style, transition: "transform 0.2s ease-out" }}
+      className={className}
+    >
+      {children}
+    </div>
+  )
+}
+
 function Projects() {
   return (
     <section id="projects" className="min-h-screen bg-gray-800 flex flex-col items-center justify-center px-6 py-20">
@@ -53,31 +93,33 @@ function Projects() {
             whileInView={{ opacity: 1, x: 0, rotate: 0 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 80, damping: 14, delay: index * 0.2 }}
-            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex flex-col justify-between hover:-translate-y-2 hover:border-purple-400/50 hover:shadow-[0_0_25px_rgba(168,85,247,0.25)] transition-all"
->
-            <div>
-              <h3 className="text-xl font-semibold text-white mb-3">
-                {project.title}
-              </h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs bg-gray-700 text-purple-300 px-2 py-1 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
+          >
+            <TiltCard className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex flex-col justify-between hover:border-purple-400/50 hover:shadow-[0_0_25px_rgba(168,85,247,0.25)] transition-colors h-full">
+              <div>
+                <h3 className="text-xl font-semibold text-white mb-3">
+                  {project.title}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs bg-gray-700 text-purple-300 px-2 py-1 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-purple-400 hover:text-purple-300 text-sm font-medium">
-  <ExternalLink className="w-4 h-4" />
-  View on GitHub
-</a>
+              
+                <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-purple-400 hover:text-purple-300 text-sm font-medium">
+                  <ExternalLink className="w-4 h-4" />
+                View on GitHub
+              </a>
+            </TiltCard>
           </motion.div>
         ))}
       </div>
